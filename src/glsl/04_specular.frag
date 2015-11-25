@@ -19,6 +19,7 @@ varying vec3 c0, c1, c2;
 
 void main()
 {
+	//check slides
     vec3 half_angle_norm = normalize(halfAngle);
     float specular = max(half_angle_norm.z, 0);
     gl_FragColor = LMa + pow(specular, shininess) * LMs; // ambient + specular

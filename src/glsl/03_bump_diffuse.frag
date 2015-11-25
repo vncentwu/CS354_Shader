@@ -19,13 +19,13 @@ varying vec3 c0, c1, c2;
 
 void main()
 {
-	float diffuse = 0.0;
+	float diffuse = 0.f;
     vec3 bump_normal = 2.f * 
     			texture2D(normalMap, 
-    			vec2(normalMapTexCoord.x * 6.0, normalMapTexCoord.y * -2.f)).rgb - 1.0;
+    			vec2(normalMapTexCoord.x * 6.f, normalMapTexCoord.y * -2.f)).rgb - 1.f;
     bump_normal = normalize(bump_normal);
     vec3 light_normal = normalize(lightDirection);    
     if (light_normal.z >= 0.0)
         diffuse = max(dot(bump_normal, light_normal), 0.0);
-    gl_FragColor = LMa + diffuse * LMd; // ambient light + diffuse light
+    gl_FragColor = diffuse * LMd + LMa; // ambient light + diffuse light
 }

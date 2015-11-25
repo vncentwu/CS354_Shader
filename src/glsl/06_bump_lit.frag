@@ -22,12 +22,12 @@ void main()
   vec3 bump_normal = 2.f * texture2D(normalMap, vec2(normalMapTexCoord.x * 6.f, normalMapTexCoord.y * -2.f)).rgb - 1.f;
   bump_normal = normalize(bump_normal);
   vec3 light_direction_normal = normalize(lightDirection);
-  float diffuse = 0.0;
-  if(light_direction_normal.z >= 0.0)
-      diffuse = max( dot(bump_normal,light_direction_normal), 0.0);
+  float diffuse = 0.f;
+  if(light_direction_normal.z >= 0.f)
+      diffuse = max( dot(bump_normal,light_direction_normal), 0.f);
   vec3 half_normal = normalize(halfAngle);
   float specular = max(dot(vec3(0, 0, 1), half_normal), 0);
-  gl_FragColor = 0.5 * (LMa + diffuse * LMd) 
+  gl_FragColor = 0.5f * (LMa + diffuse * LMd) 
   	+ texture2D(decal, normalMapTexCoord * vec2(-6.f, 2.f))
-  	+ 0.5 * pow(specular, shininess) * LMs;
+  	+ 0.5f * pow(specular, shininess) * LMs;
 }
